@@ -18,9 +18,16 @@ async function bootstrap() {
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     allowedHeaders: 'Content-Type, Authorization',
   });
+  //local testing
+  app.enableCors({
+    origin: 'http://26.31.136.242:3000',
+    credentials: true,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    allowedHeaders: 'Content-Type, Authorization',
+  });
 
-  const port = process.env.PORT || 3000;
-  await app.listen(port, '0.0.0.0');
+  const port = 3001;
+  await app.listen(port);
 }
 
 bootstrap();
