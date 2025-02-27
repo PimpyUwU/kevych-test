@@ -13,18 +13,12 @@ async function bootstrap() {
   }));
 
   app.enableCors({
-    origin: 'https://kevych-test-front.vercel.app',
+    origin: ['https://kevych-test-front.vercel.app', 'http://localhost:3000', 'http://26.31.136.242:3000'],
     credentials: true,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     allowedHeaders: 'Content-Type, Authorization',
   });
-  //local testing
-  app.enableCors({
-    origin: 'http://26.31.136.242:3000',
-    credentials: true,
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    allowedHeaders: 'Content-Type, Authorization',
-  });
+
 
   const port = process.env.PORT || 3000;
   await app.listen(port);
