@@ -65,7 +65,7 @@ export class AuthController {
 
     private setAccessTokenCookie(accessToken: string, res: Response) {
         res.cookie('access_token', accessToken, {
-            httpOnly: true,
+            httpOnly: false,
             secure: true,
             sameSite: 'none',
             path: '/',
