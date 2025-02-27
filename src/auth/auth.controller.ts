@@ -28,7 +28,7 @@ export class AuthController {
         }
         this.setAccessTokenCookie(tokens.accessToken, res);
         this.setRefreshTokenCookie(tokens.refreshToken, res);
-        res.send(); // No need to return access token in response body
+        res.send({ message: "Logged in successfully" });
     }
 
     @Post('signup')
@@ -37,7 +37,7 @@ export class AuthController {
         const tokens = await this.authService.createUser(body);
         this.setAccessTokenCookie(tokens.accessToken, res);
         this.setRefreshTokenCookie(tokens.refreshToken, res);
-        res.send();
+        res.send({ message: "User created successfully" });
     }
 
     @Get('status')
@@ -60,20 +60,26 @@ export class AuthController {
 
         this.setAccessTokenCookie(tokens.accessToken, res);
         this.setRefreshTokenCookie(tokens.refreshToken, res);
-        res.send();
+        res.send({ message: "Token refreshed successfully" });
     }
 
     private setAccessTokenCookie(accessToken: string, res: Response) {
         res.cookie('access_token', accessToken, {
-            expires: new Date(Date.now() + 15 * 60 * 1000), // 15 minutes
-            httpOnly: false,
+            httpOnly: true,
+            secure: true,
+            sameSite: 'none',
+            path: '/',
+            maxAge: 30 * 60 * 1000,
         });
     }
 
     private setRefreshTokenCookie(refreshToken: string, res: Response) {
         res.cookie('refresh_token', refreshToken, {
             httpOnly: true,
-            expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days
+            secure: true,
+            sameSite: 'none',
+            path: '/',
+            maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
         });
     }
 }
