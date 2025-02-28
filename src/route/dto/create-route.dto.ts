@@ -8,8 +8,12 @@ export class CreateRoute {
     date: Date;
 
     @IsNotEmpty()
-    trainId: string;
+    @IsNumber()
+    @IsPositive()
+    trainId: number;
 
     @IsNotEmpty()
-    stationId: string;
+    @IsNumber()
+    @IsPositive()
+    stationId: number;
 }
