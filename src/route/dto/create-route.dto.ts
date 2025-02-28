@@ -4,16 +4,12 @@ import { Type } from 'class-transformer';
 export class CreateRoute {
     @IsNotEmpty()
     @IsDate()
-    @Type(() => Date) // This comes from class-transformer, not class-validator
+    @Type(() => Date)
     date: Date;
 
     @IsNotEmpty()
-    @IsNumber()
-    @IsPositive({ message: 'Train ID must be a positive number' })
-    trainId: number;
+    trainId: string;
 
     @IsNotEmpty()
-    @IsNumber()
-    @IsPositive({ message: 'Station ID must be a positive number' })
-    stationId: number;
+    stationId: string;
 }

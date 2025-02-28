@@ -10,8 +10,8 @@ export class RouteService {
         return this.prisma.route.create({
             data: {
                 date: new Date(routeData.date),
-                trainId: routeData.trainId,
-                stationId: routeData.stationId,
+                trainId: Number(routeData.trainId),
+                stationId: Number(routeData.stationId),
             },
         });
     }
@@ -37,8 +37,8 @@ export class RouteService {
             where: { id },
             data: {
                 date: new Date(routeData.date),
-                trainId: routeData.trainId,
-                stationId: routeData.stationId,
+                trainId: Number(routeData.trainId),
+                stationId: Number(routeData.stationId),
             },
         });
     }
